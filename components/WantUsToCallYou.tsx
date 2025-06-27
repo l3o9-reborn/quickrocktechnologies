@@ -36,7 +36,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     setForm({ name: '', company: '', email: '',phone:'',message:'' })
     console.log(res.data);
   } catch (error) {
-    alert(data.error || 'Failed to send message.');
+    alert('Failed to send message.');
     console.error(error);
   } finally {
     setLoading(false);

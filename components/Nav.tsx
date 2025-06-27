@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 function Nav() {
 
-    const toggleRef= useRef<HTMLDivElement>(null);
+    const toggleRef= useRef<HTMLDivElement > (null);
     const xRef= useRef<HTMLDivElement>(null);
     const ulRef= useRef<HTMLUListElement>(null);
     const [navActive, setNavActive] = useState(false);
@@ -52,8 +52,13 @@ function Nav() {
         }
         // Cleanup on toggle
         return () => {
-            gsap.killTweensOf(toggleRef.current?.querySelectorAll('span'));
-            gsap.killTweensOf(xRef.current);
+            const spans = toggleRef.current?.querySelectorAll('span');
+            if (spans && spans.length > 0) {
+                gsap.killTweensOf(spans);
+            }
+            if (xRef.current) {
+                gsap.killTweensOf(xRef.current);
+            }
         };
     }, [navActive, ulRef, toggleRef, xRef]);
 
